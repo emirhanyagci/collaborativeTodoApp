@@ -11,6 +11,7 @@ const userSlice = createSlice({
     signInUser(state, action) {
       state.id = action.payload.id;
       state.email = action.payload.email;
+      localStorage.setItem("user", state);
     },
   },
 });

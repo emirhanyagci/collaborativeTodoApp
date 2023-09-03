@@ -7,4 +7,7 @@
   * {
     font-family: "Josefin Sans", sans-serif;
   }
+  .AccordionTrigger[data-state="open"] .AccordionIcon {
+    @apply rotate-180;
+  }
 }

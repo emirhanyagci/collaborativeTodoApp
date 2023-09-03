@@ -11,9 +11,13 @@ const userSlice = createSlice({
     signInUser(state, action) {
       state.id = action.payload.id;
       state.email = action.payload.email;
-      localStorage.setItem("user", state);
+      localStorage.setItem("user", JSON.stringify(state));
+    },
+    signOutUser() {
+      localStorage.removeItem("user");
+      return initialState;
     },
   },
 });
-export const { signInUser } = userSlice.actions;
+export const { signInUser, signOutUser } = userSlice.actions;
 export default userSlice.reducer;

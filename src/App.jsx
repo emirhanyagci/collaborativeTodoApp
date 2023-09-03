@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { Login, Signup } from "./pages";
+import { Login, Signup, Home } from "./pages";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 export default function App() {
@@ -18,6 +18,7 @@ export default function App() {
           <Routes>
             <Route path="login" element={<Login />}></Route>
             <Route path="signup" element={<Signup />}></Route>
+            <Route path="home" element={<Home />}></Route>
           </Routes>
         </Theme>
       </BrowserRouter>

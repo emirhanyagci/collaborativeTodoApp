@@ -3,12 +3,14 @@ import AuthFormContainer from "../components/AuthFormContainer";
 import { signUp } from "../services/auth";
 import { useDispatch } from "react-redux";
 import { signInUser } from "../store/userSlice";
+import { useNavigate } from "react-router-dom";
 export default function Signup() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   async function signUpHandler(email, password) {
-    signUp(email, password).then(({ data, error }) => {
-      console.log(data, error);
+    signUp(email, password).then(({ data }) => {
       dispatch(signInUser(data.user.id, data.user.email));
+      navigate("/home");
     });
   }
   return (

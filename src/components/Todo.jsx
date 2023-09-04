@@ -1,11 +1,11 @@
 import { Callout, Button } from "@radix-ui/themes";
 
-const Todo = ({ isManageable }) => {
+const Todo = ({ children, isManageable }) => {
   return (
     <li>
       <Callout.Root>
         <Callout.Text className="flex justify-between items-center w-full">
-          You will need admin privileges to install and access this application.
+          {children}
           {isManageable && (
             <Button color="crimson" variant="soft" size="2">
               Delete

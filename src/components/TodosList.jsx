@@ -14,7 +14,9 @@ const TodosList = ({ userId, isManageable = false }) => {
   return (
     <ul className="space-y-3">
       {todos?.map((todo, index) => (
-        <Todo key={index} isManageable={isManageable} />
+        <Todo key={index} isManageable={isManageable}>
+          {todo}
+        </Todo>
       ))}
     </ul>
   );

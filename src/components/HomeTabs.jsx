@@ -1,7 +1,7 @@
 import * as Tabs from "@radix-ui/react-tabs";
-import AccordionRoot from "../components/AccordionRoot";
-import AccordionItem from "../components/AccordionItem";
-import UserRow from "./UserRow";
+import FriendTodos from "./FriendTodos";
+import AddFriends from "./AddFriends";
+
 const HomeTabs = () => {
   return (
     <Tabs.Root defaultValue="tab1">
@@ -19,17 +19,12 @@ const HomeTabs = () => {
           Add Friends
         </Tabs.Trigger>
       </Tabs.List>
-      <Tabs.Content className="py-3" value="tab1">
-        <AccordionRoot>
-          <AccordionItem />
-        </AccordionRoot>
+      <Tabs.Content className="py-3 flex flex-wrap " value="tab1">
+        <FriendTodos />
       </Tabs.Content>
       <Tabs.Content className="py-3 flex flex-wrap " value="tab2">
-        <div className="w-full">
-          <UserRow />
-        </div>
+        <AddFriends />
       </Tabs.Content>
-      <Tabs.Content />
     </Tabs.Root>
   );
 };

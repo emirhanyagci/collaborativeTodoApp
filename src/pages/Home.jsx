@@ -1,5 +1,5 @@
 import { Container } from "@radix-ui/themes";
-
+import { cutNameFromEmail } from "../utils/helper";
 import NewTodo from "../components/NewTodo";
 import TodoList from "../components/TodosList";
 
@@ -11,7 +11,7 @@ const Home = () => {
     <Container size="2">
       <div className="bg-black/10 p-5">
         <div className="space-y-3">
-          <div>emirhanyagci (you)</div>
+          <div>{user.email && cutNameFromEmail(user.email)} (you)</div>
           <div>
             <NewTodo />
           </div>

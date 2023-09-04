@@ -8,7 +8,7 @@ export function signUp(email, password) {
         password,
       })
       .then(({ data, error }) => {
-        initializeUser(data.user.id);
+        initializeUser(data.user.email, data.user.id);
         resolve({ data, error });
       });
   });

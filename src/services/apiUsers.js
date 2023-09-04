@@ -23,6 +23,23 @@ export async function addTodo(todo) {
     .eq("userId", userId)
     .select();
 }
+export async function deleteTodo(todo) {
+  console.log(todo);
+  const userId = store.getState().user.id;
+  const { data } = await supabase
+    .from("users")
+    .select("todos")
+    .eq("userId", userId)
+    .single();
+  const duplicatedTodos = JSON.parse(data.todos);
+  let updatedTodos = duplicatedTodos.filter((t) => t !== todo);
+
+  const { data2, error } = await supabase
+    .from("users")
+    .update({ todos: updatedTodos })
+    .eq("userId", userId)
+    .select();
+}
 
 export async function getTodos(userId) {
   const { data } = await supabase

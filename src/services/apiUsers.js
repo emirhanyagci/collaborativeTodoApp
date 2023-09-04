@@ -15,8 +15,8 @@ export async function addTodo(todo) {
     .select("todos")
     .eq("userId", userId)
     .single();
-
-  const updatedTodos = [...JSON.parse(data.todos), todo];
+  console.log(userId);
+  const updatedTodos = [...JSON.parse(data?.todos), todo];
   console.log(JSON.parse(data.todos));
   const { data2, error } = await supabase
     .from("users")
@@ -24,4 +24,14 @@ export async function addTodo(todo) {
     .eq("userId", userId)
     .select();
   console.log(data2, error);
+}
+
+export async function getTodos(userId) {
+  const { data } = await supabase
+    .from("users")
+    .select("todos")
+    .eq("userId", userId)
+    .single();
+  console.log(JSON.parse(data));
+  return JSON.parse(data);
 }

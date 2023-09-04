@@ -9,7 +9,8 @@ export default function Signup() {
   const navigate = useNavigate();
   async function signUpHandler(email, password) {
     signUp(email, password).then(({ data }) => {
-      dispatch(signInUser(data.user.id, data.user.email));
+      console.log(data);
+      dispatch(signInUser({ id: data.user.id, email: data.user.email }));
       navigate("/home");
     });
   }

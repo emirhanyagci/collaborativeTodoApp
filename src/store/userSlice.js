@@ -9,6 +9,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     signInUser(state, action) {
+      console.log(action.payload);
       state.id = action.payload.id;
       state.email = action.payload.email;
       localStorage.setItem("user", JSON.stringify(state));

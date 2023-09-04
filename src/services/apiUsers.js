@@ -25,13 +25,30 @@ export async function addTodo(todo) {
 }
 
 export async function getTodos(userId) {
-  console.log(userId);
   const { data } = await supabase
     .from("users")
     .select("todos")
     .eq("userId", userId)
     .single();
   return JSON.parse(data.todos);
+}
+export async function getEmail(userId) {
+  const { data } = await supabase
+    .from("users")
+    .select("email")
+    .eq("userId", userId)
+    .single();
+  return data.email;
+}
+export async function getFriendsId() {
+  const userId = store.getState().user.id;
+  const { data } = await supabase
+    .from("users")
+    .select("friendsId")
+    .eq("userId", userId)
+    .single();
+
+  return JSON.parse(data.friendsId);
 }
 export async function getUsers() {
   let { data: users } = await supabase.from("users").select("email,userId");

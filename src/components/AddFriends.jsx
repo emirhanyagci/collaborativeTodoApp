@@ -13,7 +13,7 @@ const AddFriends = () => {
     getUserHandler();
   }, []);
   return (
-    <div className="w-full">
+    <div className="w-full space-y-3">
       {users.map(({ userId, email }) =>
         user.email !== email ? (
           <UserRow key={userId} userId={userId} email={email} />

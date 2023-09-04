@@ -1,6 +1,6 @@
 import { Callout, Button } from "@radix-ui/themes";
 
-const Todo = ({ children, isManageable }) => {
+const Todo = ({ children, isManageable = false }) => {
   return (
     <li>
       <Callout.Root>

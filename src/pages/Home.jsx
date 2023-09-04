@@ -1,10 +1,10 @@
 import { Container } from "@radix-ui/themes";
-import AccordionRoot from "../components/AccordionRoot";
-import AccordionItem from "../components/AccordionItem";
+
 import NewTodo from "../components/NewTodo";
-import Todo from "../components/Todo";
 import TodoList from "../components/TodosList";
+
 import { useSelector } from "react-redux";
+import HomeTabs from "../components/HomeTabs";
 const Home = () => {
   const user = useSelector((state) => state.user);
   return (
@@ -17,13 +17,10 @@ const Home = () => {
           </div>
 
           <div>
-            <TodoList userId={user.id} />
-            <Todo />
+            <TodoList userId={user.id} isManageable />
           </div>
         </div>
-        <AccordionRoot>
-          <AccordionItem />
-        </AccordionRoot>
+        <HomeTabs />
       </div>
     </Container>
   );

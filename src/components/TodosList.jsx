@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTodos } from "../services/apiUsers";
+import Todo from "./Todo";
 const TodosList = ({ userId, isManageable = false }) => {
   const [todos, setTodos] = useState([]);
 
@@ -8,9 +9,15 @@ const TodosList = ({ userId, isManageable = false }) => {
     setTodos(fetchedTodos);
   }
   useEffect(() => {
-    getTodoHandler();
+    if (userId) getTodoHandler(userId);
   }, [userId]);
-  // return <ul>{todos?.map((todo) => todo)}</ul>;
+  return (
+    <ul className="space-y-3">
+      {todos?.map((todo, index) => (
+        <Todo key={index} isManageable={isManageable} />
+      ))}
+    </ul>
+  );
 };
 
 export default TodosList;

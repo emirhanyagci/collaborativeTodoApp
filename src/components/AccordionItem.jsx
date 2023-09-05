@@ -2,7 +2,7 @@ import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { cutNameFromEmail } from "../utils/helper";
 import TodosList from "./TodosList";
-const AccordionItem = ({ email, todos }) => {
+const AccordionItem = ({ friendId, email }) => {
   return (
     <Accordion.Item
       className="AccordionItem  border-2 p-5 border-gray-950 rounded-md"
@@ -15,7 +15,8 @@ const AccordionItem = ({ email, todos }) => {
         </div>
       </Accordion.Trigger>
       <Accordion.Content className="AccordionContent ">
-        <TodosList todos={todos} />
+        in proggres
+        {/* <TodosList todos={todos} /> */}
       </Accordion.Content>
     </Accordion.Item>
   );

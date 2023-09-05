@@ -8,7 +8,7 @@ const UserRow = ({ userId, email }) => {
         <span className="text-xl"> {cutNameFromEmail(email)}</span>
         <Button
           onClick={() => {
-            addFriend(userId);
+            addFriend(userId, email);
           }}
         >
           Add Friend

@@ -55,7 +55,7 @@ export async function getEmail(userId) {
     .single();
   return data.email;
 }
-export async function getFriendsId() {
+export async function getFriends() {
   const userId = store.getState().user.id;
   const { data } = await supabase
     .from("users")
@@ -69,7 +69,7 @@ export async function getUsers() {
   let { data: users } = await supabase.from("users").select("email,userId");
   return users;
 }
-export async function addFriend(friendId) {
+export async function addFriend(friendId, email) {
   const userId = store.getState().user.id;
   const { data } = await supabase
     .from("users")
@@ -77,7 +77,10 @@ export async function addFriend(friendId) {
     .eq("userId", userId)
     .single();
 
-  const updatedFriendsId = [...JSON.parse(data?.friendsId), friendId];
+  const updatedFriendsId = [
+    ...JSON.parse(data?.friendsId),
+    { friendId, email },
+  ];
   await supabase
     .from("users")
     .update({ friendsId: updatedFriendsId })

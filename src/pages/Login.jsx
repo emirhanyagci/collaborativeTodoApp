@@ -9,7 +9,6 @@ export default function Login() {
   const navigate = useNavigate();
   async function signInHandler(email, password) {
     signIn(email, password).then(({ data }) => {
-      console.log(email);
       dispatch(signInUser({ id: data.user.id, email: data.user.email }));
       navigate("/home");
     });

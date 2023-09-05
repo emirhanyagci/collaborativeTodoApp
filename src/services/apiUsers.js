@@ -1,11 +1,10 @@
 import supabase from "./supabase";
 import store from "../store/store";
 export async function initializeUser(email, userId) {
-  const { data, error } = await supabase
+  await supabase
     .from("users")
     .insert([{ email, userId, todos: [], friendsId: [] }])
     .select();
-  console.log(data, error);
 }
 
 export async function addTodo(todo) {
@@ -15,16 +14,14 @@ export async function addTodo(todo) {
     .select("todos")
     .eq("userId", userId)
     .single();
-  console.log(userId);
   const updatedTodos = [...JSON.parse(data?.todos), todo];
-  const { data2, error } = await supabase
+  await supabase
     .from("users")
     .update({ todos: updatedTodos })
     .eq("userId", userId)
     .select();
 }
 export async function deleteTodo(todo) {
-  console.log(todo);
   const userId = store.getState().user.id;
   const { data } = await supabase
     .from("users")
@@ -34,7 +31,7 @@ export async function deleteTodo(todo) {
   const duplicatedTodos = JSON.parse(data.todos);
   let updatedTodos = duplicatedTodos.filter((t) => t !== todo);
 
-  const { data2, error } = await supabase
+  await supabase
     .from("users")
     .update({ todos: updatedTodos })
     .eq("userId", userId)
@@ -47,6 +44,7 @@ export async function getTodos(userId) {
     .select("todos")
     .eq("userId", userId)
     .single();
+  console.log(data.todos);
   return JSON.parse(data.todos);
 }
 export async function getEmail(userId) {
@@ -80,7 +78,6 @@ export async function addFriend(friendId) {
     .single();
 
   const updatedFriendsId = [...JSON.parse(data?.friendsId), friendId];
-  console.log(updatedFriendsId);
   await supabase
     .from("users")
     .update({ friendsId: updatedFriendsId })

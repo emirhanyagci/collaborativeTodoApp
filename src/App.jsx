@@ -1,9 +1,10 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { Login, Signup, Home, Users } from "./pages";
+import { Login, Signup, Home } from "./pages";
 import { useDispatch, useSelector } from "react-redux";
 import { Theme } from "@radix-ui/themes";
 import { useEffect } from "react";
 import { signInUser } from "./store/userSlice";
+import { QueryClient, QueryClientProvider } from "react-query";
 import "@radix-ui/themes/styles.css";
 import SignOut from "./components/SignOut";
 export default function App() {
@@ -16,17 +17,28 @@ export default function App() {
       dispatch(signInUser(JSON.parse(localStorage.getItem("user"))));
     if (!user.id && !localStorage.getItem("user")) navigate("/login");
   }, [user]);
-
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 60 * 1000,
+      },
+    },
+  });
   return (
-    <Theme>
-      {user.id ? <SignOut /> : null}
+    <QueryClientProvider client={queryClient}>
+      <Theme>
+        {user.id ? <SignOut /> : null}
 
-      <Routes>
-        <Route path="login" element={<Login />}></Route>
-        <Route path="signup" element={<Signup />}></Route>
-        <Route path="home" element={<Home />}></Route>
-        <Route path="users" element={<Users />}></Route>
-      </Routes>
-    </Theme>
+        <Routes>
+          <Route path="login" element={<Login />}></Route>
+          <Route path="signup" element={<Signup />}></Route>
+          {user.id ? (
+            <Route path="home" element={<Home />}></Route>
+          ) : (
+            "Loading..."
+          )}
+        </Routes>
+      </Theme>
+    </QueryClientProvider>
   );
 }

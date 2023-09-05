@@ -1,8 +1,9 @@
 import { TextField, Button } from "@radix-ui/themes";
-import { addTodo } from "../services/apiUsers";
 import { useState } from "react";
+import { useNewTodo } from "../hooks/useNewTodo";
 const NewTodo = () => {
   const [todo, setTodo] = useState("");
+  const { addTodoHandler } = useNewTodo();
   return (
     <div className="flex items-center gap-5">
       <TextField.Root className="w-full">
@@ -14,7 +15,7 @@ const NewTodo = () => {
           size="3"
         />
       </TextField.Root>
-      <Button onClick={() => addTodo(todo)}>Add Todo</Button>
+      <Button onClick={() => addTodoHandler(todo)}>Add Todo</Button>
     </div>
   );
 };

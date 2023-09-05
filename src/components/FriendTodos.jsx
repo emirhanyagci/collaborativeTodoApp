@@ -22,7 +22,6 @@ const FriendTodos = () => {
       setFriends(lastFriends);
     });
   }
-  console.log(friends);
   useEffect(() => {
     getTodosHandler();
   }, []);

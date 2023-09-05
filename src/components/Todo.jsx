@@ -1,6 +1,7 @@
 import { Callout, Button } from "@radix-ui/themes";
-import { deleteTodo } from "../services/apiUsers";
+import { useDeleteTodo } from "../hooks/useDeleteTodo";
 const Todo = ({ children, isManageable = false }) => {
+  const { deleteTodoHandler } = useDeleteTodo();
   return (
     <li>
       <Callout.Root>
@@ -8,7 +9,7 @@ const Todo = ({ children, isManageable = false }) => {
           {children}
           {isManageable && (
             <Button
-              onClick={() => deleteTodo(children)}
+              onClick={() => deleteTodoHandler(children)}
               color="crimson"
               variant="soft"
               size="2"

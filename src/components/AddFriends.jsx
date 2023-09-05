@@ -1,20 +1,13 @@
 import UserRow from "./UserRow";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getUsers } from "../services/apiUsers";
+import { useUsers } from "../hooks/useUsers";
 
 const AddFriends = () => {
   const user = useSelector((state) => state.user);
-  const [users, setUsers] = useState([]);
-  async function getUserHandler() {
-    setUsers(await getUsers());
-  }
-  useEffect(() => {
-    getUserHandler();
-  }, []);
+  const { users } = useUsers();
   return (
     <div className="w-full space-y-3">
-      {users.map(({ userId, email }) =>
+      {users?.map(({ userId, email }) =>
         user.email !== email ? (
           <UserRow key={userId} userId={userId} email={email} />
         ) : null

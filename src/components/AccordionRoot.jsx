@@ -1,7 +1,12 @@
 import * as Accordion from "@radix-ui/react-accordion";
-const AccordionRoot = ({ children }) => {
+const AccordionRoot = ({ children, onValueChange }) => {
   return (
-    <Accordion.Root className="rounded-md " type="single" collapsible>
+    <Accordion.Root
+      onValueChange={onValueChange}
+      className="rounded-md "
+      type="single"
+      collapsible
+    >
       {children}
     </Accordion.Root>
   );
